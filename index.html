@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+
+	<title>title</title>
+
+	<!-- Google font -->
+	<link href="https://fonts.googleapis.com/css?family=Montserrat:200,400,700" rel="stylesheet">
+
+	<!-- Custom stlylesheet -->
+	<link type="text/css" rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+	<div id="home">
+		<div class="home">	
+            <a href="#">update</a>
+            <a href="https://www.strava.com/segments/26805702/leaderboard?filter=overall&gender=all&per_page=200&partial=true">all</a>
+            <a href="https://www.strava.com/segments/26805702/leaderboard?filter=overall&gender=F&per_page=100&partial=true">women</a>
+		</div>
+    </div>
+
+    <h2>Using the XMLHttpRequest Object</h2>
+
+    <div id="demo">
+        <button type="button" onclick="loadXMLDoc()">Change Content</button>
+    </div>
+
+    <script>
+        function loadXMLDoc() {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function() {
+            if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("demo").innerHTML =
+            this.responseText;
+            }
+        };
+        xhttp.open("GET", "https://www.strava.com/segments/26805702/leaderboard?filter=overall&gender=F&per_page=100&partial=true", true);
+        xhttp.send();
+        }
+    </script>
+    
+    <script src="script.js"></script>
+</body>
+</html>
