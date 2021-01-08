@@ -29,22 +29,34 @@
 
     <div id="demo">
         <button type="button" onclick="loadXMLDoc()">Change Content</button>
+        <button type="button" onclick="loadleaderboard()">load leadearboard</button>
     </div>
 
     <script>
-        function loadXMLDoc() {
-        var xhttp = new XMLHttpRequest();
-        xhttp.onreadystatechange = function() {
-            if (this.readyState == 4 && this.status == 200) {
-            document.getElementById("demo").innerHTML =
-            this.responseText;
-            }
-        };
-        xhttp.open("GET", "https://www.strava.com/segments/26805702/leaderboard?filter=overall&gender=F&per_page=100&partial=true", true);
-        xhttp.send();
+        function loadXMLDoc(){
+            
+            var nw = window.open('https://www.strava.com/segments/26805702/leaderboard?filter=overall&gender=all&per_page=200&partial=true', '_parent');
+            // var res = nw.document.getElementById("results").innerHTML;
+            nw.onload = function() {
+                console.log("this is it!");
+            };
+            nw.document.close();
+        }
+        
+        function loadleaderboard() {
+            var content = document.getElementById("results");
+            var res = content.getElementsByTagName("tbody")[0];
+            console.log(res);
+            var nw = window.open("workouts.html");
+            nw.document.write("<table><tbody>");
+            nw.document.write(res.innerHTML);
+            nw.document.write("</tbody></table>");
+            nw.document.close();
+            window.open("workouts.html");
         }
     </script>
     
     <script src="script.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </body>
 </html>
