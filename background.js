@@ -10,15 +10,17 @@ chrome.browserAction.onClicked.addListener(function(tab) {
     chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
         var activeTab = tabs[0];
 
-        var resultUrl = "https://www.strava.com/segments/"+ segment +"/leaderboard?filter=overall&gender=all&per_page="+ per_page +"&partial=true"
+        chrome.tabs.create({"url":"https://docs.google.com/spreadsheets/d/1ttiTDL2SQPeUeJzkE8V3ZJNO5-JwGk30Os9aouipOes/edit#gid=880484624"});
+
+        var resultUrl = "https://www.strava.com/segments/"+ segment +"/leaderboard?filter=overall&gender=F&per_page="+ per_page +"&partial=true"
         console.log(resultUrl);
         chrome.tabs.create({"url": resultUrl}, function(newTab) {
             tab_callbacks[newTab.id] = function() {
                 chrome.tabs.sendMessage(newTab.id, {"url": resultUrl, "test": "this is", "message": "clicked_browser_action"});
             }
         });
-        
-        var resultUrl = "https://www.strava.com/segments/"+ segment +"/leaderboard?filter=overall&gender=F&per_page="+ per_page +"&partial=true"
+
+        var resultUrl = "https://www.strava.com/segments/"+ segment +"/leaderboard?filter=overall&gender=all&per_page="+ per_page +"&partial=true"
         console.log(resultUrl);
         chrome.tabs.create({"url": resultUrl}, function(newTab) {
             tab_callbacks[newTab.id] = function() {
